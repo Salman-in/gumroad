@@ -10,10 +10,14 @@
 }
 
 .custom-sections {
-  & > * {
+  &>* {
     position: relative;
 
-    > [role="toolbar"] {
+    @media (max-width: 1023px) {
+      padding-top: spacer(8);
+    }
+
+    >[role="toolbar"] {
       display: flex;
       gap: spacer(1);
       border: $border;
@@ -26,8 +30,8 @@
         box-shadow: box-shadow(1);
       }
 
-      > button,
-      > details > summary {
+      >button,
+      >details>summary {
         @extend %section-button;
       }
 
@@ -40,7 +44,7 @@
     }
   }
 
-  > section {
+  >section {
     display: flex;
     flex-direction: column;
     gap: spacer(6);
@@ -50,7 +54,7 @@
       position: absolute;
       top: -$border-width;
 
-      > summary {
+      >summary {
         border: $border;
         border-bottom-left-radius: border-radius(1);
         border-bottom-right-radius: border-radius(1);
@@ -63,7 +67,7 @@
         }
       }
 
-      ~ .add-section {
+      ~.add-section {
         top: 100%;
       }
     }
