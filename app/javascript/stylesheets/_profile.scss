@@ -3,17 +3,19 @@
   grid-template-rows: auto 1fr;
   min-height: 100%;
 
-  & > header {
+  &>header {
     @include font-size(3);
     display: grid;
     grid-template-columns: 1fr;
 
-    & > section {
+    &>section {
       display: flex;
       align-items: center;
+      justify-content: end;
       gap: spacer(3);
       border-bottom: $border;
       padding: $body-padding-mobile;
+      padding-top: spacer(5);
 
       &:not(:first-child) {
         grid-column: span 2;
@@ -31,35 +33,37 @@
   }
 
   @include breakpoint-up(lg, true) {
-    & > header {
+    &>header {
       grid-auto-flow: column;
       gap: spacer(6);
       padding: spacer(5) $body-padding-desktop-center;
       align-items: center;
       border-bottom: $border;
 
-      & > section {
+      &>section {
         border: none;
         padding: 0;
         grid-row: unset;
         grid-column: unset;
+        justify-content: start;
       }
     }
 
-    main > footer {
+    main>footer {
       padding: spacer(5) $body-padding-desktop-center;
       text-align: left;
     }
   }
 
   &.reader main {
-    > article {
+    >article {
       @include font-size(3);
     }
 
     @include breakpoint-up(lg) {
-      > article,
-      > .comments {
+
+      >article,
+      >.comments {
         padding-right: max((100% - #{size(50)}) - #{$body-padding-desktop-center}, #{$body-padding-desktop});
       }
     }
