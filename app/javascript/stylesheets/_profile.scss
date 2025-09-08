@@ -11,9 +11,11 @@
     & > section {
       display: flex;
       align-items: center;
+      justify-content: end;
       gap: spacer(3);
       border-bottom: $border;
       padding: $body-padding-mobile;
+      padding-top: spacer(5);
 
       &:not(:first-child) {
         grid-column: span 2;
@@ -43,6 +45,7 @@
         padding: 0;
         grid-row: unset;
         grid-column: unset;
+        justify-content: start;
       }
     }
 
