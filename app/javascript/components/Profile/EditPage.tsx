@@ -248,8 +248,8 @@ export const EditProfile = (props: Props) => {
       <div
         style={{
           position: "fixed",
-          top: "var(--spacer-3)",
-          left: "var(--spacer-3)",
+          top: "var(--spacer-5)",
+          right: "var(--spacer-5)",
           zIndex: "var(--z-index-above-overlay)",
           padding: 0,
           border: "none",
