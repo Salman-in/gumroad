@@ -320,8 +320,8 @@ const EditButton = ({ product }: { product: Product }) => {
     <div
       style={{
         position: "absolute",
-        top: "var(--spacer-3)",
-        left: "var(--spacer-3)",
+        top: "var(--spacer-4)",
+        left: "var(--spacer-4)",
         // Render above the product `article`
         zIndex: "var(--z-index-overlay)",
       }}

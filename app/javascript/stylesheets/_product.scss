@@ -54,6 +54,7 @@ article {
     @include bg-color(filled);
     border: $border;
     border-radius: border-radius(1);
+    margin-top: spacer(6);
 
     > figure {
       background: url("~images/placeholders/product-cover.png");
