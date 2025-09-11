@@ -150,6 +150,10 @@ main {
 
   *:where(& > :not(:first-child)) {
     border-top: $border;
+
+    &:nth-child(2) {
+      border-top: none;
+    }
   }
 
   & > a {
