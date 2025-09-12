@@ -252,7 +252,7 @@ export const EditProfile = (props: Props) => {
           position: "fixed",
           top: "var(--spacer-5)",
           left: isDesktop ? "var(--spacer-5)" : undefined,
-          right: isDesktop ? undefined : "var(--spacer-5)",
+          right: isDesktop ? undefined : "var(--spacer-4)",
           zIndex: "var(--z-index-above-overlay)",
           padding: 0,
           border: "none",
