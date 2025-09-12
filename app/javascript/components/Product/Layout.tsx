@@ -328,7 +328,7 @@ const EditButton = ({ product }: { product: Product }) => {
         zIndex: "var(--z-index-overlay)",
       }}
     >
-      <WithTooltip tip="Edit product" position="right">
+      <WithTooltip tip="Edit product" position={isDesktop ? "right" : "left"}>
         <NavigationButton
           color="filled"
           href={Routes.edit_link_url({ id: product.permalink }, { host: appDomain })}

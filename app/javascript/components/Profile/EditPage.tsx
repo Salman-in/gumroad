@@ -258,7 +258,7 @@ export const EditProfile = (props: Props) => {
           border: "none",
         }}
       >
-        <WithTooltip tip="Edit profile" position="left">
+        <WithTooltip tip="Edit profile" position={isDesktop ? "right" : "left"}>
           <NavigationButton
             color="filled"
             href={Routes.settings_profile_url({ host: appDomain })}
