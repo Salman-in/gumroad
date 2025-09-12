@@ -19,6 +19,7 @@ import { ProfileProps, TabWithId, useTabs } from "$app/components/server-compone
 import PlainTextStarterKit from "$app/components/TiptapExtensions/PlainTextStarterKit";
 import { useRefToLatest } from "$app/components/useRefToLatest";
 import { WithTooltip } from "$app/components/WithTooltip";
+import { useIsAboveBreakpoint } from "$app/components/useIsAboveBreakpoint";
 
 import {
   AddSectionButton,
@@ -188,6 +189,7 @@ export const EditProfile = (props: Props) => {
   const reducer = React.useMemo(() => [{ ...props, sections: visibleSections }, dispatch] as const, [visibleSections]);
 
   const imageUploadSettings = useSectionImageUploadSettings();
+  const isDesktop = useIsAboveBreakpoint("lg");
 
   return (
     <SectionReducerContext.Provider value={reducer}>
@@ -249,7 +251,8 @@ export const EditProfile = (props: Props) => {
         style={{
           position: "fixed",
           top: "var(--spacer-5)",
-          right: "var(--spacer-5)",
+          left: isDesktop ? "var(--spacer-5)" : undefined,
+          right: isDesktop ? undefined : "var(--spacer-5)",
           zIndex: "var(--z-index-above-overlay)",
           padding: 0,
           border: "none",

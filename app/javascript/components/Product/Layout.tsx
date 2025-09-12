@@ -313,6 +313,7 @@ const CtaBar = ({
 
 const EditButton = ({ product }: { product: Product }) => {
   const appDomain = useAppDomain();
+  const isDesktop = useIsAboveBreakpoint("lg");
 
   if (!product.can_edit) return null;
 
@@ -320,8 +321,9 @@ const EditButton = ({ product }: { product: Product }) => {
     <div
       style={{
         position: "absolute",
-        top: "var(--spacer-4)",
-        left: "var(--spacer-4)",
+        top: isDesktop ? "var(--spacer-5)" : "var(--spacer-4)",
+        right: isDesktop ? undefined : "var(--spacer-4)",
+        left: isDesktop ? "var(--spacer-5)" : undefined,
         // Render above the product `article`
         zIndex: "var(--z-index-overlay)",
       }}
