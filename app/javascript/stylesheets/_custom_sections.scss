@@ -12,9 +12,6 @@
 .custom-sections {
   & > * {
     position: relative;
-    @media (max-width: 1023px) {
-      padding-top: spacer(7);
-    }
 
     > [role="toolbar"] {
       display: flex;
@@ -80,6 +77,12 @@
     @include breakpoint-up(lg) {
       margin-top: -1 * spacer(8) - $border-width;
       margin-bottom: -1 * spacer(1) - $border-width;
+    }
+  }
+
+  &.has-user > * {
+    @media (max-width: 1023px) {
+      padding-top: spacer(7);
     }
   }
 }
