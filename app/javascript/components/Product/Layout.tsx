@@ -321,9 +321,9 @@ const EditButton = ({ product }: { product: Product }) => {
     <div
       style={{
         position: "absolute",
-        top: isDesktop ? "var(--spacer-5)" : "var(--spacer-4)",
+        top: isDesktop ? "var(--spacer-3)" : "var(--spacer-4)",
         right: isDesktop ? undefined : "var(--spacer-4)",
-        left: isDesktop ? "var(--spacer-5)" : undefined,
+        left: isDesktop ? "var(--spacer-3)" : undefined,
         // Render above the product `article`
         zIndex: "var(--z-index-overlay)",
       }}
