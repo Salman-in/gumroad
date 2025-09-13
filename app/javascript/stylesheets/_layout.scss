@@ -151,7 +151,7 @@ main {
   *:where(& > :not(:first-child)) {
     border-top: $border;
 
-    &:nth-child(2) {
+    &:nth-child(2):not(footer) {
       border-top: none;
     }
   }
