@@ -17,9 +17,9 @@ import { ImageUploadSettingsContext } from "$app/components/RichTextEditor";
 import { showAlert } from "$app/components/server-components/Alert";
 import { ProfileProps, TabWithId, useTabs } from "$app/components/server-components/Profile";
 import PlainTextStarterKit from "$app/components/TiptapExtensions/PlainTextStarterKit";
+import { useIsAboveBreakpoint } from "$app/components/useIsAboveBreakpoint";
 import { useRefToLatest } from "$app/components/useRefToLatest";
 import { WithTooltip } from "$app/components/WithTooltip";
-import { useIsAboveBreakpoint } from "$app/components/useIsAboveBreakpoint";
 
 import {
   AddSectionButton,
@@ -250,7 +250,7 @@ export const EditProfile = (props: Props) => {
       <div
         style={{
           position: "fixed",
-          top: isDesktop ? "var(--spacer-3)" :"var(--spacer-5)",
+          top: isDesktop ? "var(--spacer-3)" : "var(--spacer-5)",
           left: isDesktop ? "var(--spacer-3)" : undefined,
           right: isDesktop ? undefined : "var(--spacer-4)",
           zIndex: "var(--z-index-above-overlay)",
