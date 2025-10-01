@@ -1,6 +1,6 @@
 import cx from "classnames";
 import * as React from "react";
-import { CSSProperties } from "react";
+
 
 import { AssetPreview } from "$app/parsers/product";
 
@@ -21,7 +21,6 @@ export const Covers = ({
   closeButton,
   className,
   isThumbnail,
-  style,
 }: {
   covers: AssetPreview[];
   activeCoverId: string | null;
@@ -29,7 +28,6 @@ export const Covers = ({
   closeButton?: React.ReactNode;
   className?: string;
   isThumbnail?: boolean;
-  style?: CSSProperties;
 }) => {
   useOnChange(() => {
     if (!covers.some((cover) => cover.id === activeCoverId)) setActiveCoverId(covers[0]?.id ?? null);
@@ -50,7 +48,7 @@ export const Covers = ({
   );
 
   return (
-    <figure className={cx("carousel", className)} aria-label="Product preview" style={style}>
+    <figure className={cx("carousel", className)} aria-label="Product preview">
       {closeButton}
       {prevCover ? <PreviewArrow direction="previous" onClick={() => setActiveCoverId(prevCover.id)} /> : null}
       {nextCover ? <PreviewArrow direction="next" onClick={() => setActiveCoverId(nextCover.id)} /> : null}
