@@ -44,8 +44,8 @@ const ProductsCarousel = ({ products, title }: { products: CardProduct[]; title:
   const [dragStart, setDragStart] = React.useState<number | null>(null);
 
   return (
-    <div className="grid gap-4">
-      <div className="flex items-center justify-between">
+    <section className="grid gap-4">
+      <header className="flex items-center justify-between">
         <h2>{title}</h2>
         <div className="flex items-center gap-2">
           <button onClick={() => setActive((active + products.length - 1) % products.length)}>
@@ -56,7 +56,7 @@ const ProductsCarousel = ({ products, title }: { products: CardProduct[]; title:
             <Icon name="arrow-right" />
           </button>
         </div>
-      </div>
+      </header>
       <div className="relative">
         <div
           className="grid auto-cols-[min(20rem,60vw)] grid-flow-col gap-5 min-h-96 pb-1 lg:auto-cols-[40rem] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
@@ -80,7 +80,7 @@ const ProductsCarousel = ({ products, title }: { products: CardProduct[]; title:
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
