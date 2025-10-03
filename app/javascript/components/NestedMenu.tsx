@@ -364,7 +364,6 @@ const ItemsList = ({
             setDisplayedItem(displayedItem.parent ?? initialMenuItem);
             e.preventDefault();
           }}
-          style={{ justifyContent: "normal", gap: "var(--spacer-2)" }}
           role="menuitem"
         >
           <Icon name="outline-cheveron-left" />
