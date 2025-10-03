@@ -45,7 +45,7 @@ export const CreditCardInput = ({
         <div className="input read-only" aria-label="Saved credit card">
           <Icon name="outline-credit-card" />
           <span>{savedCreditCard.number}</span>
-          <span style={{ marginLeft: "auto" }}>{savedCreditCard.expiration_date}</span>
+          <span className="ml-auto">{savedCreditCard.expiration_date}</span>
         </div>
       ) : (
         <div className={cx("input", { disabled })} aria-label="Card information" aria-invalid={invalid}>
