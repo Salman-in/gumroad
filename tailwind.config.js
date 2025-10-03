@@ -73,6 +73,8 @@ export default {
         background: "rgb(var(--filled))",
         foreground: "rgb(var(--color))",
         border: "rgb(var(--color) / var(--border-alpha))",
+        accent: "rgb(var(--accent))",
+        muted: "rgb(var(--color) / var(--gray-1))"
       },
       boxShadow: {
         DEFAULT: "0.25rem 0.25rem 0 currentColor",
