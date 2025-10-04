@@ -59,7 +59,7 @@ export const NodeActionsMenu = ({
               </div>
             ))}
             <div
-              style={{ color: "rgb(var(--danger))" }}
+              className="text-danger"
               onClick={() => editor.commands.deleteSelection()}
               role="menuitem"
             >

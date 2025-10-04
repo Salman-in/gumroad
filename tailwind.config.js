@@ -73,6 +73,7 @@ export default {
         background: "rgb(var(--filled))",
         foreground: "rgb(var(--color))",
         border: "rgb(var(--color) / var(--border-alpha))",
+        danger: "rgb(var(--danger))",
       },
       boxShadow: {
         DEFAULT: "0.25rem 0.25rem 0 currentColor",

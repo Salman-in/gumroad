@@ -265,7 +265,7 @@ export const SectionLayout = ({
             <h5>{linkCopied ? "Copied!" : "Copy link"}</h5>
             <Icon name="link" />
           </button>
-          <button onClick={() => void remove()} style={{ color: "rgb(var(--danger))" }}>
+          <button onClick={() => void remove()} className="text-danger">
             <h5>Remove</h5>
             <Icon name="trash2" />
           </button>
