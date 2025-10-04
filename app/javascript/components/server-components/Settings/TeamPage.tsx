@@ -139,13 +139,7 @@ const AddTeamMembersSection = ({
           Learn more
         </a>
       </header>
-      <div
-        style={{
-          display: "grid",
-          gap: "var(--spacer-3)",
-          gridTemplateColumns: "repeat(auto-fit, max(var(--dynamic-grid), 50% - var(--spacer-3) / 2))",
-        }}
-      >
+      <div className="grid gap-3 [grid-template-columns:repeat(auto-fit,max(var(--dynamic-grid),calc(50%-var(--spacer-3)/2)))]">
         <fieldset className={cx({ danger: errors.has("email") })}>
           <legend>
             <label htmlFor={emailUID}>Email</label>
@@ -303,26 +297,25 @@ const TeamMembersSection = ({
           {memberInfos.map((memberInfo) => (
             <tr key={`${memberInfo.type}-${memberInfo.id}`}>
               <td data-label="Member">
-                <div style={{ display: "flex", alignItems: "center", gap: "var(--spacer-4)" }}>
+                <div className="flex items-center gap-4">
                   <img
-                    className="user-avatar"
-                    style={{ width: "var(--spacer-6)" }}
+                    className="user-avatar !w-8"
                     src={memberInfo.avatar_url}
                     alt={`Avatar of ${memberInfo.name}`}
                   />
-                  <div style={{ display: "flex", alignItems: "center", gap: "var(--spacer-2)" }}>
+                  <div className="flex items-center gap-2">
                     <div>
                       {memberInfo.name}
                       <small>{memberInfo.email}</small>
                     </div>
-                    {memberInfo.is_expired ? (
+                    {!memberInfo.is_expired ? (
                       <WithTooltip
                         tip="Invitation has expired. You can resend the invitation from the member's menu options."
                         position="top"
                       >
                         <Icon
                           name="solid-shield-exclamation"
-                          style={{ color: "rgb(var(--warning))" }}
+                          className="text-warning"
                           aria-label="Invitation has expired. You can resend the invitation from the member's menu options."
                         />
                       </WithTooltip>
