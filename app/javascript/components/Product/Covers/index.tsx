@@ -1,4 +1,3 @@
-import cx from "classnames";
 import * as React from "react";
 import { CSSProperties } from "react";
 
@@ -8,6 +7,7 @@ import { Icon } from "$app/components/Icons";
 import { useElementDimensions } from "$app/components/useElementDimensions";
 import { useOnChange } from "$app/components/useOnChange";
 import { useScrollableCarousel } from "$app/components/useScrollableCarousel";
+import { classNames } from "$app/utils/classNames";
 
 import { Embed } from "./Embed";
 import { Image } from "./Image";
@@ -51,7 +51,7 @@ export const Covers = ({
   );
 
   return (
-    <figure className={cx("relative group col-[1/-1]", className)} aria-label="Product preview" style={style}>
+    <figure className={classNames("relative group col-[1/-1]", className)} aria-label="Product preview" style={style}>
       {closeButton}
       {prevCover ? <PreviewArrow direction="previous" onClick={() => setActiveCoverId(prevCover.id)} /> : null}
       {nextCover ? <PreviewArrow direction="next" onClick={() => setActiveCoverId(nextCover.id)} /> : null}
@@ -79,7 +79,7 @@ export const Covers = ({
                 e.preventDefault();
                 setActiveCoverId(cover.id);
               }}
-              className={cx(
+              className={classNames(
                 "block border border-current p-2 rounded-[10rem] bg-background",
                 i === activeCoverIndex && "bg-current"
               )}
@@ -97,7 +97,7 @@ const PreviewArrow = ({ direction, onClick }: { direction: "previous" | "next"; 
 
   return (
     <button
-      className={cx(
+      className={classNames(
         "p-3 hidden absolute top-1/2 -translate-y-1/2 items-center justify-center z-[1]",
         "group-hover:flex",
         positionClass
