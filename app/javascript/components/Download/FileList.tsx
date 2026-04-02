@@ -200,7 +200,7 @@ export const FileRow = ({
     toggleAudioDrawer();
   };
 
-  if (isMobileAppWebView && isEmbed && FileUtils.isAudioExtension(file.extension)) {
+  if (isMobileAppWebView && FileUtils.isAudioExtension(file.extension)) {
     return <MobileAppAudioFileRow file={file} />;
   }
 
