@@ -7,7 +7,7 @@ import { cast } from "ts-safe-cast";
 import { incrementPostViews } from "$app/data/view_event";
 import { formatPostDate } from "$app/utils/date";
 
-import { NavigationButton } from "$app/components/Button";
+import { Button } from "$app/components/Button";
 import { BlogLayout } from "$app/components/GumroadBlog/Layout";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { useRichTextEditor } from "$app/components/RichTextEditor";
@@ -65,15 +65,16 @@ function ShowPage() {
               {call_to_action ? (
                 <div className="grid">
                   <p>
-                    <NavigationButton
-                      href={call_to_action.url}
-                      target="_blank"
-                      style={{ whiteSpace: "normal" }}
-                      rel="noopener noreferrer"
-                      color="accent"
-                    >
-                      {call_to_action.text}
-                    </NavigationButton>
+                    <Button asChild color="accent">
+                      <a
+                        href={call_to_action.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ whiteSpace: "normal" }}
+                      >
+                        {call_to_action.text}
+                      </a>
+                    </Button>
                   </p>
                 </div>
               ) : null}

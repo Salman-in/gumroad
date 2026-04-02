@@ -6,7 +6,7 @@ import { cast } from "ts-safe-cast";
 
 import { classNames } from "$app/utils/classNames";
 
-import { NavigationButton } from "$app/components/Button";
+import { Button } from "$app/components/Button";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Card, CardContent } from "$app/components/ui/Card";
@@ -121,10 +121,12 @@ const TaxCenterIndex = () => {
   };
 
   const settingsAction = loggedInUser?.policies.settings_payments_user.show ? (
-    <NavigationButton href={Routes.settings_payments_path()}>
-      <Cog pack="filled" className="size-5" />
-      Settings
-    </NavigationButton>
+    <Button asChild>
+      <a href={Routes.settings_payments_path()}>
+        <Cog pack="filled" className="size-5" />
+        Settings
+      </a>
+    </Button>
   ) : null;
 
   return (
@@ -202,15 +204,20 @@ const TaxCenterIndex = () => {
                     </TableCell>
                     <TableCell data-label="" className="text-right">
                       <div className="flex justify-end">
-                        <NavigationButton
+                        <Button
+                          asChild
                           size="sm"
                           className="w-full sm:w-auto"
-                          href={Routes.download_tax_form_path(doc.year, doc.form_type)}
                           disabled={downloadingFormType === doc.form_type}
-                          onClick={(e) => handleDownload(e, doc.form_type)}
                         >
-                          {downloadingFormType === doc.form_type ? "Downloading..." : "Download"}
-                        </NavigationButton>
+                          <a
+                            href={Routes.download_tax_form_path(doc.year, doc.form_type)}
+                            onClick={(e) => handleDownload(e, doc.form_type)}
+                            inert={downloadingFormType === doc.form_type}
+                          >
+                            {downloadingFormType === doc.form_type ? "Downloading..." : "Download"}
+                          </a>
+                        </Button>
                       </div>
                     </TableCell>
                   </TableRow>

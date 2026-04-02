@@ -11,7 +11,7 @@ import { variantLabel } from "$app/utils/labels";
 import { calculateFirstInstallmentPaymentPriceCents } from "$app/utils/price";
 import { formatAmountPerRecurrence, recurrenceNames, recurrenceDurationLabels } from "$app/utils/recurringPricing";
 
-import { Button, NavigationButton } from "$app/components/Button";
+import { Button } from "$app/components/Button";
 import {
   CartItem,
   CartItemFooter,
@@ -226,7 +226,11 @@ export const Checkout = ({
         className="border-none pb-0 md:px-16 md:pb-0 lg:mb-2"
         title="Checkout"
         actions={
-          isDesktop ? <NavigationButton href={cart.returnUrl ?? discoverUrl}>Continue shopping</NavigationButton> : null
+          isDesktop ? (
+            <Button asChild>
+              <a href={cart.returnUrl ?? discoverUrl}>Continue shopping</a>
+            </Button>
+          ) : null
         }
         showTitleOnMobile
       />
@@ -381,7 +385,11 @@ export const Checkout = ({
               ) : null}
             </div>
             <PaymentForm />
-            {!isDesktop && <NavigationButton href={cart.returnUrl ?? discoverUrl}>Continue shopping</NavigationButton>}
+            {!isDesktop && (
+              <Button asChild>
+                <a href={cart.returnUrl ?? discoverUrl}>Continue shopping</a>
+              </Button>
+            )}
           </div>
         </div>
       ) : (

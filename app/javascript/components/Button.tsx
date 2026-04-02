@@ -142,27 +142,3 @@ export interface NavigationButtonProps extends Omit<React.ComponentPropsWithoutR
   size?: VariantProps<typeof buttonVariants>["size"];
   disabled?: boolean | undefined;
 }
-
-export const NavigationButton = React.forwardRef<HTMLAnchorElement, NavigationButtonProps>(
-  ({ className, color, outline, size, disabled, children, ...props }, ref) => (
-    <Button asChild className={className} color={color} outline={outline} size={size} disabled={disabled}>
-      <a
-        ref={ref}
-        inert={disabled}
-        {...props}
-        onClick={(evt) => {
-          if (props.onClick == null) return;
-
-          if (props.href == null || props.href === "#") evt.preventDefault();
-
-          props.onClick(evt);
-
-          evt.stopPropagation();
-        }}
-      >
-        {children}
-      </a>
-    </Button>
-  ),
-);
-NavigationButton.displayName = "NavigationButton";

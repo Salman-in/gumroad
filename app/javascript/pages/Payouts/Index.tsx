@@ -8,7 +8,7 @@ import { formatPriceCentsWithCurrencySymbol, formatPriceCentsWithoutCurrencySymb
 import { asyncVoid } from "$app/utils/promise";
 import { assertResponseError } from "$app/utils/request";
 
-import { Button, NavigationButton } from "$app/components/Button";
+import { Button } from "$app/components/Button";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { Modal } from "$app/components/Modal";
 import { NavigationButtonInertia } from "$app/components/NavigationButton";
@@ -317,9 +317,9 @@ const PeriodEmpty = () => (
       <PlaceholderImage src={placeholder} />
       <h2>Let's get you paid.</h2>
       Reach your minimum payout threshold to be paid out.
-      <NavigationButton color="accent" href="/settings/payments">
-        View payout threshold
-      </NavigationButton>
+      <Button asChild color="accent">
+        <a href="/settings/payments">View payout threshold</a>
+      </Button>
       <a href="/help/article/269-balance-page">Learn about payouts</a>
     </Placeholder>
   </div>

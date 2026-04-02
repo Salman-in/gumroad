@@ -8,7 +8,7 @@ import { formatPriceCentsWithCurrencySymbol, formatPriceCentsWithoutCurrencySymb
 import { asyncVoid } from "$app/utils/promise";
 import { assertResponseError } from "$app/utils/request";
 
-import { Button, NavigationButton } from "$app/components/Button";
+import { Button } from "$app/components/Button";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
 import { Modal } from "$app/components/Modal";
 import { PaginationProps } from "$app/components/Pagination";
@@ -547,9 +547,9 @@ const PeriodEmpty = ({ minimumPayoutAmountCents }: { minimumPayoutAmountCents: n
         symbolFormat: "short",
       })}{" "}
       to be paid out for your sales.
-      <NavigationButton color="accent" href="/help/article/269-balance-page">
-        Learn about payouts
-      </NavigationButton>
+      <Button asChild color="accent">
+        <a href="/help/article/269-balance-page">Learn about payouts</a>
+      </Button>
     </Placeholder>
   </div>
 );
@@ -714,10 +714,12 @@ const Payouts = ({
   if (!loggedInUser) return null;
 
   const settingsAction = loggedInUser.policies.settings_payments_user.show ? (
-    <NavigationButton href={Routes.settings_payments_path()}>
-      <Cog pack="filled" className="size-5" />
-      Settings
-    </NavigationButton>
+    <Button asChild>
+      <a href={Routes.settings_payments_path()}>
+        <Cog pack="filled" className="size-5" />
+        Settings
+      </a>
+    </Button>
   ) : null;
 
   const bulkExportAction = loggedInUser.policies.balance.export ? <ExportPayoutsPopover /> : null;

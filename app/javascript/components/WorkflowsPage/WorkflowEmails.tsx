@@ -22,7 +22,7 @@ import { ALLOWED_EXTENSIONS } from "$app/utils/file";
 import GuidGenerator from "$app/utils/guid_generator";
 import { assertResponseError, request } from "$app/utils/request";
 
-import { Button, NavigationButton } from "$app/components/Button";
+import { Button } from "$app/components/Button";
 import { CartItem, CartItemList, CartItemMain, CartItemMedia, CartItemTitle } from "$app/components/CartItemList";
 import { useCurrentSeller } from "$app/components/CurrentSeller";
 import { useAppDomain, useDomains } from "$app/components/DomainSettings";
@@ -684,16 +684,17 @@ const AbandonedCartProductListNodeView = (props: NodeViewProps) => {
       ) : null}
 
       <WithTooltip tip={isPreview ? null : "This cannot be deleted"} position="top">
-        <NavigationButton
-          color="primary"
-          href={Routes.checkout_url({ host: appDomain })}
-          target="_blank"
-          rel="noopener noreferrer nofollow"
-          style={isPreview ? {} : { pointerEvents: "none" }}
-          tabIndex={isPreview ? undefined : -1}
-        >
-          Complete checkout
-        </NavigationButton>
+        <Button asChild color="primary">
+          <a
+            href={Routes.checkout_url({ host: appDomain })}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            style={isPreview ? {} : { pointerEvents: "none" }}
+            tabIndex={isPreview ? undefined : -1}
+          >
+            Complete checkout
+          </a>
+        </Button>
       </WithTooltip>
     </NodeViewWrapper>
   );

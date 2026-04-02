@@ -16,7 +16,7 @@ import { getMimeType } from "$app/utils/mimetypes";
 import { summarizeUploadProgress } from "$app/utils/summarizeUploadProgress";
 
 import { AudioPlayer } from "$app/components/AudioPlayer";
-import { Button, buttonVariants, NavigationButton } from "$app/components/Button";
+import { Button, buttonVariants } from "$app/components/Button";
 import { connectedFileRowClassName } from "$app/components/Download/RichContent";
 import { useEvaporateUploader } from "$app/components/EvaporateUploader";
 import { FileRowContent } from "$app/components/FileRowContent";
@@ -514,12 +514,11 @@ const FileEmbedNodeView = ({ node, editor, getPos, updateAttributes }: NodeViewP
 
           <RowActions>
             {downloadUrl && !file.stream_only ? (
-              <NavigationButton
-                href={downloadUrl}
-                download={`${file.display_name}.${file.extension?.toLocaleLowerCase()}`}
-              >
-                Download
-              </NavigationButton>
+              <Button asChild>
+                <a href={downloadUrl} download={`${file.display_name}.${file.extension?.toLocaleLowerCase()}`}>
+                  Download
+                </a>
+              </Button>
             ) : null}
 
             {file.is_streamable ? (

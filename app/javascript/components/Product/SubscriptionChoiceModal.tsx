@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Button, NavigationButton } from "$app/components/Button";
+import { Button } from "$app/components/Button";
 import { Modal } from "$app/components/Modal";
 import { Purchase } from "$app/components/Product";
 
@@ -27,12 +27,16 @@ export const SubscriptionChoiceModal = ({ purchase, checkoutUrl, onClose }: Prop
           or <strong>start fresh with a new subscription</strong>?
         </p>
         <div className="grid gap-3 sm:grid-cols-2">
-          <NavigationButton href={newSubscriptionHref} target="_top">
-            Start a new subscription
-          </NavigationButton>
-          <NavigationButton href={purchase.membership.manage_url} color="black" target="_blank">
-            Resume subscription
-          </NavigationButton>
+          <Button asChild>
+            <a href={newSubscriptionHref} target="_top">
+              Start a new subscription
+            </a>
+          </Button>
+          <Button asChild color="black">
+            <a href={purchase.membership.manage_url} target="_blank" rel="noreferrer">
+              Resume subscription
+            </a>
+          </Button>
         </div>
       </Modal>
     );
@@ -48,9 +52,11 @@ export const SubscriptionChoiceModal = ({ purchase, checkoutUrl, onClose }: Prop
       </p>
       <div className="grid gap-3 sm:grid-cols-2">
         <Button onClick={onClose}>Cancel</Button>
-        <NavigationButton href={newSubscriptionHref} color="black" target="_top">
-          Start a new subscription
-        </NavigationButton>
+        <Button asChild color="black">
+          <a href={newSubscriptionHref} target="_top">
+            Start a new subscription
+          </a>
+        </Button>
       </div>
     </Modal>
   );

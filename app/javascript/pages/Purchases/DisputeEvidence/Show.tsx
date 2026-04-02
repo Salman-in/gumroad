@@ -14,7 +14,7 @@ import {
 } from "$app/data/purchase/dispute_evidence_data";
 import FileUtils from "$app/utils/file";
 
-import { Button, NavigationButton } from "$app/components/Button";
+import { Button } from "$app/components/Button";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
@@ -406,9 +406,11 @@ const Files = ({
             </div>
           </RowContent>
           <RowActions>
-            <NavigationButton outline href={Routes.s3_utility_cdn_url_for_blob_path({ key: blob.key })} target="_blank">
-              View
-            </NavigationButton>
+            <Button asChild outline>
+              <a href={Routes.s3_utility_cdn_url_for_blob_path({ key: blob.key })} target="_blank" rel="noreferrer">
+                View
+              </a>
+            </Button>
             {blob.signed_id ? (
               <Button
                 size="icon"

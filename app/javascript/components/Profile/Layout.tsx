@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { CreatorProfile } from "$app/parsers/profile";
 
-import { NavigationButton } from "$app/components/Button";
+import { Button } from "$app/components/Button";
 import { CartNavigationButton } from "$app/components/Checkout/CartNavigationButton";
 import { useCartItemsCount } from "$app/components/Checkout/useCartItemsCount";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
@@ -29,9 +29,11 @@ export const Layout = ({ creatorProfile, hideFollowForm, children }: LayoutProps
     creatorProfile.twitter_handle || cartItemsCount ? (
       <div className="ml-auto flex items-center gap-3">
         {creatorProfile.twitter_handle ? (
-          <NavigationButton outline href={`https://twitter.com/${creatorProfile.twitter_handle}`} target="_blank">
-            <TwitterX pack="brands" className="size-5" />
-          </NavigationButton>
+          <Button asChild outline>
+            <a href={`https://twitter.com/${creatorProfile.twitter_handle}`} target="_blank" rel="noreferrer">
+              <TwitterX pack="brands" className="size-5" />
+            </a>
+          </Button>
         ) : null}
         <CartNavigationButton />
       </div>
@@ -44,15 +46,16 @@ export const Layout = ({ creatorProfile, hideFollowForm, children }: LayoutProps
           <div className="relative flex grow items-center gap-3 border-b border-border p-4 lg:flex-1 lg:border-0 lg:p-0">
             {(loggedInUser?.isGumroadAdmin || loggedInUser?.isImpersonating) &&
             creatorProfile.external_id !== loggedInUser.id ? (
-              <NavigationButton
-                href={Routes.admin_impersonate_url({
-                  user_identifier: creatorProfile.external_id,
-                })}
-                className="left-3"
-                color="filled"
-              >
-                Impersonate
-              </NavigationButton>
+              <Button asChild color="filled">
+                <a
+                  href={Routes.admin_impersonate_url({
+                    user_identifier: creatorProfile.external_id,
+                  })}
+                  className="left-3"
+                >
+                  Impersonate
+                </a>
+              </Button>
             ) : null}
             <Avatar src={creatorProfile.avatar_url} alt="Profile Picture" />
             <a href={Routes.root_path()} className="flex items-center gap-2 no-underline">

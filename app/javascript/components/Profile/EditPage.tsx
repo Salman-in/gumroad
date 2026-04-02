@@ -10,7 +10,7 @@ import GuidGenerator from "$app/utils/guid_generator";
 import { assertResponseError } from "$app/utils/request";
 
 import AutoLink from "$app/components/AutoLink";
-import { Button, NavigationButton } from "$app/components/Button";
+import { Button } from "$app/components/Button";
 import { useAppDomain } from "$app/components/DomainSettings";
 import { Modal } from "$app/components/Modal";
 import { ProfileProps, TabWithId, useTabs } from "$app/components/Profile";
@@ -254,14 +254,11 @@ export const EditProfile = (props: Props) => {
       </header>
       <div className="fixed! top-5 right-3 z-30 p-0! lg:top-3 lg:right-auto lg:left-3">
         <WithTooltip tip="Edit profile" position={isDesktop ? "right" : "left"}>
-          <NavigationButton
-            color="filled"
-            size="icon"
-            href={Routes.settings_profile_url({ host: appDomain })}
-            aria-label="Edit profile"
-          >
-            <Pencil className="size-5" />
-          </NavigationButton>
+          <Button asChild color="filled" size="icon">
+            <a href={Routes.settings_profile_url({ host: appDomain })} aria-label="Edit profile">
+              <Pencil className="size-5" />
+            </a>
+          </Button>
         </WithTooltip>
       </div>
       {visibleSections.length ? (

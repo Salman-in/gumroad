@@ -7,7 +7,7 @@ import { formatPriceCentsWithCurrencySymbol } from "$app/utils/currency";
 import { request } from "$app/utils/request";
 
 import { ActivityFeed, ActivityItem } from "$app/components/ActivityFeed";
-import { Button, NavigationButton } from "$app/components/Button";
+import { Button } from "$app/components/Button";
 import { useAppDomain } from "$app/components/DomainSettings";
 import { CustomizeProfileIcon } from "$app/components/icons/getting-started/CustomizeProfileIcon";
 import { EmailBlastIcon } from "$app/components/icons/getting-started/EmailBlastIcon";
@@ -153,9 +153,9 @@ const Greeter = () => (
   <Placeholder>
     <PlaceholderImage src={placeholderImage} />
     <h2>We're here to help you get paid for your work.</h2>
-    <NavigationButton href={Routes.new_product_path()} color="accent">
-      Create your first product
-    </NavigationButton>
+    <Button asChild color="accent">
+      <a href={Routes.new_product_path()}>Create your first product</a>
+    </Button>
     <a href="/help/article/149-adding-a-product" target="_blank" rel="noreferrer">
       Learn more about creating products
     </a>
@@ -206,9 +206,9 @@ const GettingStartedItem = ({
   }
 
   return (
-    <NavigationButton color="filled" href={link} className={commonClasses} data-status="pending">
-      {content}
-    </NavigationButton>
+    <Button asChild color="filled" className={commonClasses} data-status="pending">
+      <a href={link}>{content}</a>
+    </Button>
   );
 };
 

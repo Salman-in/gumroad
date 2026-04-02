@@ -8,7 +8,7 @@ import { classNames } from "$app/utils/classNames";
 import { RecurrenceId, recurrenceNames } from "$app/utils/recurringPricing";
 import { assertResponseError } from "$app/utils/request";
 
-import { Button, NavigationButton } from "$app/components/Button";
+import { Button } from "$app/components/Button";
 import { CopyToClipboard } from "$app/components/CopyToClipboard";
 import { Card } from "$app/components/Product/Card";
 import { Option } from "$app/components/Product/ConfigurationSelector";
@@ -150,20 +150,21 @@ const WishlistItemCard = ({
         item.purchasable ? (
           <div style={{ position: "absolute", top: "var(--spacer-4)", right: "var(--spacer-4)" }}>
             <WithTooltip position="top" tip="Add to cart">
-              <NavigationButton
-                href={addToCartUrl(item)}
-                color="primary"
-                aria-label="Add to cart"
-                onClick={() =>
-                  trackCtaClick({
-                    sellerId: item.product.seller?.id,
-                    permalink: item.product.permalink,
-                    name: item.product.name,
-                  })
-                }
-              >
-                <Cart pack="filled" className="size-5" />
-              </NavigationButton>
+              <Button asChild color="primary">
+                <a
+                  href={addToCartUrl(item)}
+                  aria-label="Add to cart"
+                  onClick={() =>
+                    trackCtaClick({
+                      sellerId: item.product.seller?.id,
+                      permalink: item.product.permalink,
+                      name: item.product.name,
+                    })
+                  }
+                >
+                  <Cart pack="filled" className="size-5" />
+                </a>
+              </Button>
             </WithTooltip>
           </div>
         ) : null
@@ -238,14 +239,12 @@ export const Wishlist = ({
       ) : null}
       {can_follow ? <FollowButton wishlistId={id} wishlistName={name} initialValue={following} /> : null}
       <WithTooltip tip={checkout_enabled ? null : "None of the products on this wishlist are available for purchase"}>
-        <NavigationButton
-          color="accent"
-          href={Routes.checkout_url({ params: { wishlist: id } })}
-          disabled={!checkout_enabled}
-        >
-          <Cart pack="filled" className="size-5" />
-          Buy this wishlist
-        </NavigationButton>
+        <Button asChild color="accent" disabled={!checkout_enabled}>
+          <a href={Routes.checkout_url({ params: { wishlist: id } })} inert={!checkout_enabled}>
+            <Cart pack="filled" className="size-5" />
+            Buy this wishlist
+          </a>
+        </Button>
       </WithTooltip>
     </>
   );

@@ -7,7 +7,7 @@ import { trackUserProductAction } from "$app/data/user_action_event";
 import { classNames } from "$app/utils/classNames";
 import { assertResponseError } from "$app/utils/request";
 
-import { Button, NavigationButton } from "$app/components/Button";
+import { Button } from "$app/components/Button";
 import { CartItem } from "$app/components/Checkout/cartState";
 import { useState } from "$app/components/Checkout/payment";
 import { DiscordButton } from "$app/components/DiscordButton";
@@ -111,15 +111,11 @@ const SuccessfulLineItemResultEntry = ({ name, result }: { name: string; result:
             ) : null}
             {result.content_url ? (
               <CardContent>
-                <NavigationButton
-                  href={result.content_url}
-                  color="accent"
-                  target="_blank"
-                  onClick={trackViewContentClick}
-                  className="grow basis-0"
-                >
-                  {result.view_content_button_text}
-                </NavigationButton>
+                <Button asChild color="accent" className="grow basis-0">
+                  <a href={result.content_url} target="_blank" onClick={trackViewContentClick} rel="noreferrer">
+                    {result.view_content_button_text}
+                  </a>
+                </Button>
               </CardContent>
             ) : null}
             {result.is_gift_sender_purchase ? (
