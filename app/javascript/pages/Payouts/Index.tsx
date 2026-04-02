@@ -25,7 +25,7 @@ import { Card, CardContent } from "$app/components/ui/Card";
 import { Fieldset, FieldsetTitle } from "$app/components/ui/Fieldset";
 import { InputGroup } from "$app/components/ui/InputGroup";
 import { Label } from "$app/components/ui/Label";
-import { NavigationButton, NavigationButtonInertia } from "$app/components/ui/NavigationButton";
+import { NavigationButtonInertia } from "$app/components/ui/NavigationButton";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Pill } from "$app/components/ui/Pill";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
@@ -317,9 +317,9 @@ const PeriodEmpty = () => (
       <PlaceholderImage src={placeholder} />
       <h2>Let's get you paid.</h2>
       Reach your minimum payout threshold to be paid out.
-      <NavigationButton color="accent" href="/settings/payments">
-        View payout threshold
-      </NavigationButton>
+      <Button asChild color="accent">
+        <a href="/settings/payments">View payout threshold</a>
+      </Button>
       <a href="/help/article/269-balance-page">Learn about payouts</a>
     </Placeholder>
   </div>

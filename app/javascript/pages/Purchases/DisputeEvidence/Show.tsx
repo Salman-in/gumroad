@@ -22,7 +22,6 @@ import { Card, CardContent } from "$app/components/ui/Card";
 import { Fieldset, FieldsetTitle } from "$app/components/ui/Fieldset";
 import { InlineList } from "$app/components/ui/InlineList";
 import { Label } from "$app/components/ui/Label";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { Radio } from "$app/components/ui/Radio";
 import { Row, RowActions, RowContent, Rows } from "$app/components/ui/Rows";
 import { Textarea } from "$app/components/ui/Textarea";
@@ -407,9 +406,11 @@ const Files = ({
             </div>
           </RowContent>
           <RowActions>
-            <NavigationButton outline href={Routes.s3_utility_cdn_url_for_blob_path({ key: blob.key })} target="_blank">
-              View
-            </NavigationButton>
+            <Button asChild outline>
+              <a href={Routes.s3_utility_cdn_url_for_blob_path({ key: blob.key })} target="_blank" rel="noreferrer">
+                View
+              </a>
+            </Button>
             {blob.signed_id ? (
               <Button
                 size="icon"

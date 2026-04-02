@@ -14,7 +14,6 @@ import { ProductIconCell } from "$app/components/ProductsPage/ProductIconCell";
 import { RatingStars } from "$app/components/RatingStars";
 import { ReviewForm } from "$app/components/ReviewForm";
 import { Card } from "$app/components/ui/Card";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 import { Table, TableBody, TableCaption, TableCell, TableRow } from "$app/components/ui/Table";
 import { useOnChange } from "$app/components/useOnChange";
@@ -189,9 +188,9 @@ export default function ReviewsIndex({
         <section className="p-4 md:p-8">
           <Placeholder>
             <h2>You've reviewed all your products!</h2>
-            <NavigationButton href={discoverUrl} color="accent">
-              Discover more
-            </NavigationButton>
+            <Button asChild color="accent">
+              <a href={discoverUrl}>Discover more</a>
+            </Button>
           </Placeholder>
         </section>
       ) : null}
@@ -201,9 +200,9 @@ export default function ReviewsIndex({
             <PlaceholderImage src={placeholderImage} />
             <h2>You haven't bought anything... yet!</h2>
             Once you do, it'll show up here so you can review them.
-            <NavigationButton href={discoverUrl} color="accent">
-              Discover products
-            </NavigationButton>
+            <Button asChild color="accent">
+              <a href={discoverUrl}>Discover products</a>
+            </Button>
             <a href="/help/article/344-rate-and-review-your-purchase" target="_blank" rel="noreferrer">
               Learn more about reviews
             </a>

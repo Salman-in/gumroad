@@ -24,7 +24,6 @@ import { Popover, PopoverContent, PopoverTrigger } from "$app/components/Popover
 import { showAlert } from "$app/components/server-components/Alert";
 import { ToggleSettingRow } from "$app/components/SettingRow";
 import { Menu, MenuItem } from "$app/components/ui/Menu";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 import { useDebouncedCallback } from "$app/components/useDebouncedCallback";
 import { useIsAboveBreakpoint } from "$app/components/useIsAboveBreakpoint";
@@ -817,9 +816,11 @@ const EmptyCommunitiesPlaceholder = ({ hasProducts }: { hasProducts: boolean }) 
           When you publish a product, we automatically create a dedicated community chat—your own space to connect with
           customers, answer questions, and build relationships.
         </p>
-        <NavigationButton href={hasProducts ? Routes.products_path() : Routes.new_product_path()} color="accent">
-          {hasProducts ? "Enable community chat for your products" : "Create a product with community"}
-        </NavigationButton>
+        <Button asChild color="accent">
+          <a href={hasProducts ? Routes.products_path() : Routes.new_product_path()}>
+            {hasProducts ? "Enable community chat for your products" : "Create a product with community"}
+          </a>
+        </Button>
         <p>
           or{" "}
           <a href="/help/article/347-gumroad-community" target="_blank" rel="noreferrer">
