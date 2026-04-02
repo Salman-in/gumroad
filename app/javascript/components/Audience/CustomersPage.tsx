@@ -8,6 +8,7 @@ import {
   Trash,
   Truck,
 } from "@boxicons/react";
+import { Link } from "@inertiajs/react";
 import { Blob, DirectUpload } from "@rails/activestorage";
 import cx from "classnames";
 import { lightFormat, subMonths } from "date-fns";
@@ -76,7 +77,6 @@ import { DateRangePicker } from "$app/components/DateRangePicker";
 import { FileKindIcon } from "$app/components/FileRowContent";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { Modal } from "$app/components/Modal";
-import { NavigationButtonInertia } from "$app/components/NavigationButton";
 import { NumberInput } from "$app/components/NumberInput";
 import { Pagination, PaginationProps } from "$app/components/Pagination";
 import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from "$app/components/Popover";
@@ -428,18 +428,19 @@ const CustomersPage = ({
                       : "This will download a CSV with each purchase on its own row."}
                   </div>
                   <DateRangePicker from={from} to={to} setFrom={setFrom} setTo={setTo} />
-                  <NavigationButtonInertia
-                    color="primary"
-                    href={Routes.export_purchases_path({
-                      start_time: lightFormat(from, "yyyy-MM-dd"),
-                      end_time: lightFormat(to, "yyyy-MM-dd"),
-                      product_ids: includedProductIds,
-                      variant_ids: includedVariantIds,
-                    })}
-                    onSuccess={() => setExportPopoverOpen(false)}
-                  >
-                    Download
-                  </NavigationButtonInertia>
+                  <Button asChild color="primary">
+                    <Link
+                      href={Routes.export_purchases_path({
+                        start_time: lightFormat(from, "yyyy-MM-dd"),
+                        end_time: lightFormat(to, "yyyy-MM-dd"),
+                        product_ids: includedProductIds,
+                        variant_ids: includedVariantIds,
+                      })}
+                      onSuccess={() => setExportPopoverOpen(false)}
+                    >
+                      Download
+                    </Link>
+                  </Button>
                   {count > 2000 && (
                     <div className="mt-2 text-sm text-gray-600">
                       Exports over 2,000 rows will be processed in the background and emailed to you.

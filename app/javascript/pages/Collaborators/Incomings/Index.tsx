@@ -1,5 +1,5 @@
 import { Check, X } from "@boxicons/react";
-import { useForm, usePage } from "@inertiajs/react";
+import { Link, useForm, usePage } from "@inertiajs/react";
 import * as React from "react";
 import { cast } from "ts-safe-cast";
 
@@ -12,7 +12,6 @@ import { Button } from "$app/components/Button";
 import CollaboratorDetailsSheet from "$app/components/Collaborators/CollaboratorDetailsSheet";
 import { Layout } from "$app/components/Collaborators/Layout";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
-import { NavigationButtonInertia } from "$app/components/NavigationButton";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Avatar } from "$app/components/ui/Avatar";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
@@ -187,15 +186,15 @@ const IncomingCollaboratorsPage = () => {
       showTabs
       headerActions={
         <WithTooltip position="bottom" tip={collaborators_disabled_reason}>
-          <NavigationButtonInertia
-            href={Routes.new_collaborator_path()}
+          <Button
+            asChild
             color="accent"
             disabled={
               !loggedInUser?.policies.collaborator.create || collaborators_disabled_reason !== null || form.processing
             }
           >
-            Add collaborator
-          </NavigationButtonInertia>
+            <Link href={Routes.new_collaborator_path()}>Add collaborator</Link>
+          </Button>
         </WithTooltip>
       }
     >

@@ -1,7 +1,7 @@
-import { Deferred, usePage } from "@inertiajs/react";
+import { Deferred, Link, usePage } from "@inertiajs/react";
 import React from "react";
 
-import { NavigationButtonInertia } from "$app/components/NavigationButton";
+import { Button } from "$app/components/Button";
 import { ProductsLayout } from "$app/components/ProductsLayout";
 import ProductsPage from "$app/components/ProductsPage";
 import { ProductsContentLoading } from "$app/components/ProductsPage/ContentLoading";
@@ -39,9 +39,9 @@ const ProductsContent = ({
           <h2>We've never met an idea we didn't like.</h2>
           <p>Your first product doesn't need to be perfect. Just put it out there, and see if it sticks.</p>
           <div>
-            <NavigationButtonInertia href={Routes.new_product_path()} disabled={!canCreateProduct} color="accent">
-              New product
-            </NavigationButtonInertia>
+            <Button asChild color="accent" disabled={!canCreateProduct}>
+              <Link href={Routes.new_product_path()}>New product</Link>
+            </Button>
           </div>
           <span>
             or{" "}

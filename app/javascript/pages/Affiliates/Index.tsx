@@ -12,7 +12,6 @@ import { Button, buttonVariants } from "$app/components/Button";
 import { CopyToClipboard } from "$app/components/CopyToClipboard";
 import { LoadingSpinner } from "$app/components/LoadingSpinner";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
-import { NavigationButtonInertia } from "$app/components/NavigationButton";
 import { Pagination, PaginationProps } from "$app/components/Pagination";
 import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from "$app/components/Popover";
 import { showAlert } from "$app/components/server-components/Alert";
@@ -328,13 +327,13 @@ export default function AffiliatesIndex() {
           <>
             <SearchBoxPopover onSearch={onSearch} initialQuery={searchQuery} />
             <WithTooltip position="bottom" tip={affiliates_disabled_reason}>
-              <NavigationButtonInertia
-                href={Routes.new_affiliate_path()}
+              <Button
+                asChild
                 color="accent"
                 disabled={!loggedInUser?.policies.direct_affiliate.create || affiliates_disabled_reason !== null}
               >
-                Add affiliate
-              </NavigationButtonInertia>
+                <Link href={Routes.new_affiliate_path()}>Add affiliate</Link>
+              </Button>
             </WithTooltip>
           </>
         }
@@ -423,14 +422,16 @@ export default function AffiliatesIndex() {
                                   <Button>Copy link</Button>
                                 </CopyToClipboard>
 
-                                <NavigationButtonInertia
-                                  href={Routes.edit_affiliate_path(affiliate.id)}
+                                <Button
+                                  asChild
                                   size="icon"
                                   aria-label="Edit"
                                   disabled={!loggedInUser?.policies.direct_affiliate.update || isNavigating}
                                 >
-                                  <Pencil className="size-5" />
-                                </NavigationButtonInertia>
+                                  <Link href={Routes.edit_affiliate_path(affiliate.id)}>
+                                    <Pencil className="size-5" />
+                                  </Link>
+                                </Button>
 
                                 <Button
                                   type="submit"
@@ -527,13 +528,9 @@ const AffiliateDetails = ({
         );
       })}
       <section style={{ display: "grid", gap: "var(--spacer-4)", gridAutoFlow: "column", gridAutoColumns: "1fr" }}>
-        <NavigationButtonInertia
-          href={Routes.edit_affiliate_path(selectedAffiliate.id)}
-          aria-label="Edit"
-          disabled={!loggedInUser?.policies.direct_affiliate.update || isNavigating}
-        >
-          Edit
-        </NavigationButtonInertia>
+        <Button asChild aria-label="Edit" disabled={!loggedInUser?.policies.direct_affiliate.update || isNavigating}>
+          <Link href={Routes.edit_affiliate_path(selectedAffiliate.id)}>Edit</Link>
+        </Button>
         <Button
           color="danger"
           aria-label="Delete"

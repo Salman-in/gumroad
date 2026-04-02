@@ -1,5 +1,5 @@
 import { XSquare } from "@boxicons/react";
-import { useForm, usePage } from "@inertiajs/react";
+import { Link, useForm, usePage } from "@inertiajs/react";
 import * as React from "react";
 import { cast } from "ts-safe-cast";
 
@@ -8,7 +8,6 @@ import { isUrlValid } from "$app/utils/url";
 
 import { Button } from "$app/components/Button";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
-import { NavigationButtonInertia } from "$app/components/NavigationButton";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Fieldset, FieldsetTitle } from "$app/components/ui/Fieldset";
 import { Input } from "$app/components/ui/Input";
@@ -81,10 +80,10 @@ export default function AffiliatesNew() {
 
     if (
       data.affiliate.apply_to_all_products &&
-      (!data.affiliate.fee_percent || data.affiliate.fee_percent < 1 || data.affiliate.fee_percent > 75)
+      (!data.affiliate.fee_percent || data.affiliate.fee_percent < 1 || data.affiliate.fee_percent > 90)
     ) {
-      form.setError("affiliate.fee_percent", "Commission must be between 1% and 75%");
-      showAlert("Commission must be between 1% and 75%", "error");
+      form.setError("affiliate.fee_percent", "Commission must be between 1% and 90%");
+      showAlert("Commission must be between 1% and 90%", "error");
       return;
     }
 
@@ -96,10 +95,10 @@ export default function AffiliatesNew() {
 
     if (
       !data.affiliate.apply_to_all_products &&
-      data.affiliate.products.some((p) => p.enabled && (!p.fee_percent || p.fee_percent < 1 || p.fee_percent > 75))
+      data.affiliate.products.some((p) => p.enabled && (!p.fee_percent || p.fee_percent < 1 || p.fee_percent > 90))
     ) {
-      form.setError("affiliate.products", "All enabled products must have commission between 1% and 75%");
-      showAlert("All enabled products must have commission between 1% and 75%", "error");
+      form.setError("affiliate.products", "All enabled products must have commission between 1% and 90%");
+      showAlert("All enabled products must have commission between 1% and 90%", "error");
       return;
     }
 
@@ -132,10 +131,12 @@ export default function AffiliatesNew() {
         title="New Affiliate"
         actions={
           <>
-            <NavigationButtonInertia href={Routes.affiliates_path()} disabled={processing}>
-              <XSquare className="size-5" />
-              Cancel
-            </NavigationButtonInertia>
+            <Button asChild disabled={processing}>
+              <Link href={Routes.affiliates_path()}>
+                <XSquare className="size-5" />
+                Cancel
+              </Link>
+            </Button>
             <Button
               color="accent"
               onClick={handleSubmit}

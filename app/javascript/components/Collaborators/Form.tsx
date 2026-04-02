@@ -1,5 +1,5 @@
 import { XSquare } from "@boxicons/react";
-import { useForm } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import * as React from "react";
 
 import type { CollaboratorFormProduct, EditPageProps, NewPageProps } from "$app/data/collaborators";
@@ -8,7 +8,6 @@ import { isValidEmail } from "$app/utils/email";
 import { Button } from "$app/components/Button";
 import { Layout } from "$app/components/Collaborators/Layout";
 import { Modal } from "$app/components/Modal";
-import { NavigationButtonInertia } from "$app/components/NavigationButton";
 import { NumberInput } from "$app/components/NumberInput";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Checkbox } from "$app/components/ui/Checkbox";
@@ -158,10 +157,12 @@ const CollaboratorForm = ({
       title={pageMetadata.title}
       headerActions={
         <>
-          <NavigationButtonInertia disabled={form.processing} href={Routes.collaborators_path()}>
-            <XSquare className="size-5" />
-            Cancel
-          </NavigationButtonInertia>
+          <Button asChild disabled={form.processing}>
+            <Link href={Routes.collaborators_path()}>
+              <XSquare className="size-5" />
+              Cancel
+            </Link>
+          </Button>
           <WithTooltip position="bottom" tip={collaboratorsDisabledReason}>
             <Button
               color="accent"

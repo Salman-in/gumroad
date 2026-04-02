@@ -8,7 +8,6 @@ import { isUrlValid } from "$app/utils/url";
 import { Button } from "$app/components/Button";
 import { CopyToClipboard } from "$app/components/CopyToClipboard";
 import { useLoggedInUser } from "$app/components/LoggedInUser";
-import { NavigationButtonInertia } from "$app/components/NavigationButton";
 import { NumberInput } from "$app/components/NumberInput";
 import { showAlert } from "$app/components/server-components/Alert";
 import { ToggleSettingRow } from "$app/components/SettingRow";
@@ -38,7 +37,7 @@ type Props = {
 };
 
 const MIN_FEE_PERCENT = 1;
-const MAX_FEE_PERCENT = 75;
+const MAX_FEE_PERCENT = 90;
 const isValidFeePercent = (fee: number | null) => fee !== null && fee >= MIN_FEE_PERCENT && fee <= MAX_FEE_PERCENT;
 const validateProduct = (product: SelfServeAffiliateProduct): InvalidProductAttrs => {
   const invalidAttributes: InvalidProductAttrs = new Set();
@@ -109,12 +108,12 @@ export default function AffiliatesOnboarding() {
         actions={
           <>
             <WithTooltip position="bottom" tip={props.affiliates_disabled_reason}>
-              <NavigationButtonInertia
-                href={cast<string>(Routes.new_affiliate_path())}
+              <Button
+                asChild
                 disabled={!loggedInUser?.policies.direct_affiliate.create || props.affiliates_disabled_reason !== null}
               >
-                Add affiliate
-              </NavigationButtonInertia>
+                <Link href={cast<string>(Routes.new_affiliate_path())}>Add affiliate</Link>
+              </Button>
             </WithTooltip>
             <Button
               onClick={handleSaveChanges}
@@ -134,13 +133,9 @@ export default function AffiliatesOnboarding() {
             <PlaceholderImage src={placeholderImage} />
             <h2>Almost there!</h2>
             You need a published product to add affiliates.
-            <NavigationButtonInertia
-              href={Routes.new_product_path()}
-              color="accent"
-              disabled={!loggedInUser?.policies.product.create}
-            >
-              New product
-            </NavigationButtonInertia>
+            <Button asChild color="accent" disabled={!loggedInUser?.policies.product.create}>
+              <Link href={Routes.new_product_path()}>New product</Link>
+            </Button>
           </Placeholder>
         </section>
       ) : (

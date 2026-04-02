@@ -1,5 +1,5 @@
-import { Link, RefreshCcw, XSquare } from "@boxicons/react";
-import { router, useForm } from "@inertiajs/react";
+import { Link as LinkIcon, RefreshCcw, XSquare } from "@boxicons/react";
+import { Link, router, useForm } from "@inertiajs/react";
 import * as React from "react";
 import { cast } from "ts-safe-cast";
 
@@ -9,7 +9,6 @@ import { assertDefined } from "$app/utils/assert";
 import { AnalyticsLayout } from "$app/components/Analytics/AnalyticsLayout";
 import { Button } from "$app/components/Button";
 import { CopyToClipboard } from "$app/components/CopyToClipboard";
-import { NavigationButtonInertia } from "$app/components/NavigationButton";
 import { Select } from "$app/components/Select";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Fieldset, FieldsetDescription, FieldsetTitle } from "$app/components/ui/Fieldset";
@@ -263,10 +262,12 @@ export const UtmLinkForm = (pageProps: UtmLinkFormProps | UtmLinkEditProps) => {
       title={isEditing ? "Edit link" : "Create link"}
       actions={
         <>
-          <NavigationButtonInertia href={Routes.dashboard_utm_links_path()} disabled={processing}>
-            <XSquare className="size-5" />
-            Cancel
-          </NavigationButtonInertia>
+          <Button asChild disabled={processing}>
+            <Link href={Routes.dashboard_utm_links_path()}>
+              <XSquare className="size-5" />
+              Cancel
+            </Link>
+          </Button>
           <Button color="accent" onClick={handleSubmit} disabled={processing}>
             {processing ? "Saving..." : isEditing ? "Save changes" : "Add link"}
           </Button>
@@ -347,7 +348,7 @@ export const UtmLinkForm = (pageProps: UtmLinkFormProps | UtmLinkEditProps) => {
                   text={`${shortUrlProtocol}//${shortUrlPrefix}${isEditing ? permalink : data.utm_link.permalink}`}
                 >
                   <Button type="button" size="icon" aria-label="Copy short link">
-                    <Link className="size-5" />
+                    <LinkIcon className="size-5" />
                   </Button>
                 </CopyToClipboard>
                 {!isEditing && (
@@ -478,7 +479,7 @@ export const UtmLinkForm = (pageProps: UtmLinkFormProps | UtmLinkEditProps) => {
                 />
                 <CopyToClipboard copyTooltip="Copy UTM link" text={finalUrl}>
                   <Button type="button" size="icon" aria-label="Copy UTM link">
-                    <Link className="size-5" />
+                    <LinkIcon className="size-5" />
                   </Button>
                 </CopyToClipboard>
               </InputGroup>
