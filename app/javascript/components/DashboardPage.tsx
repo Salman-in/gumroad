@@ -22,7 +22,6 @@ import { ProductIconCell } from "$app/components/ProductsPage/ProductIconCell";
 import { DownloadTaxFormsPopover } from "$app/components/server-components/DashboardPage/DownloadTaxFormsPopover";
 import { Stats } from "$app/components/Stats";
 import { Alert } from "$app/components/ui/Alert";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "$app/components/ui/Table";
@@ -151,9 +150,9 @@ const Greeter = () => (
   <Placeholder>
     <PlaceholderImage src={placeholderImage} />
     <h2>We're here to help you get paid for your work.</h2>
-    <NavigationButton href={Routes.new_product_path()} color="accent">
-      Create your first product
-    </NavigationButton>
+    <Button asChild color="accent">
+      <a href={Routes.new_product_path()}>Create your first product</a>
+    </Button>
     <a href="/help/article/149-adding-a-product" target="_blank" rel="noreferrer">
       Learn more about creating products
     </a>
@@ -204,9 +203,9 @@ const GettingStartedItem = ({
   }
 
   return (
-    <NavigationButton color="filled" href={link} className={commonClasses} data-status="pending">
-      {content}
-    </NavigationButton>
+    <Button asChild color="filled" className={commonClasses} data-status="pending">
+      <a href={link}>{content}</a>
+    </Button>
   );
 };
 

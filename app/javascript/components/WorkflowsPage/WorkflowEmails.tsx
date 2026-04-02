@@ -46,7 +46,6 @@ import { InvalidNameForEmailDeliveryWarning } from "$app/components/server-compo
 import { Avatar } from "$app/components/ui/Avatar";
 import { Fieldset } from "$app/components/ui/Fieldset";
 import { Input } from "$app/components/ui/Input";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
 import { Select } from "$app/components/ui/Select";
@@ -683,16 +682,17 @@ const AbandonedCartProductListNodeView = (props: NodeViewProps) => {
       ) : null}
 
       <WithTooltip tip={isPreview ? null : "This cannot be deleted"} position="top">
-        <NavigationButton
-          color="primary"
-          href={Routes.checkout_url({ host: appDomain })}
-          target="_blank"
-          rel="noopener noreferrer nofollow"
-          style={isPreview ? {} : { pointerEvents: "none" }}
-          tabIndex={isPreview ? undefined : -1}
-        >
-          Complete checkout
-        </NavigationButton>
+        <Button asChild color="primary">
+          <a
+            href={Routes.checkout_url({ host: appDomain })}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            style={isPreview ? {} : { pointerEvents: "none" }}
+            tabIndex={isPreview ? undefined : -1}
+          >
+            Complete checkout
+          </a>
+        </Button>
       </WithTooltip>
     </NodeViewWrapper>
   );

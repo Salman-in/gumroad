@@ -5,7 +5,6 @@ import React from "react";
 import { Button } from "$app/components/Button";
 import { UnauthenticatedNewTicketModal } from "$app/components/support/UnauthenticatedNewTicketModal";
 import { UnreadTicketsBadge } from "$app/components/support/UnreadTicketsBadge";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Tab, Tabs } from "$app/components/ui/Tabs";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
@@ -53,34 +52,24 @@ export function SupportHeader({
             </Button>
           ) : isAnonymousUserOnHelpCenter ? (
             <>
-              <NavigationButton
-                color="accent"
-                outline
-                href="https://github.com/antiwork/gumroad/issues/new"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2"
-              >
-                <Github pack="brands" className="size-5" />
-                Report a bug
-              </NavigationButton>
+              <Button asChild color="accent" outline className="flex items-center gap-2">
+                <a href="https://github.com/antiwork/gumroad/issues/new" target="_blank" rel="noopener noreferrer">
+                  <Github pack="brands" className="size-5" />
+                  Report a bug
+                </a>
+              </Button>
               <Button color="accent" onClick={() => setIsUnauthenticatedNewTicketOpen(true)}>
                 Contact support
               </Button>
             </>
           ) : hasHelperSession ? (
             <>
-              <NavigationButton
-                color="accent"
-                outline
-                href="https://github.com/antiwork/gumroad/issues/new"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2"
-              >
-                <Github pack="brands" className="size-5" />
-                Report a bug
-              </NavigationButton>
+              <Button asChild color="accent" outline className="flex items-center gap-2">
+                <a href="https://github.com/antiwork/gumroad/issues/new" target="_blank" rel="noopener noreferrer">
+                  <Github pack="brands" className="size-5" />
+                  Report a bug
+                </a>
+              </Button>
               <Button color="accent" onClick={onOpenNewTicket}>
                 New ticket
               </Button>

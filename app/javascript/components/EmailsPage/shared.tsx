@@ -12,7 +12,6 @@ import { EditEmailButton, NewEmailButton } from "$app/components/EmailsPage/Layo
 import { ViewEmailButton } from "$app/components/EmailsPage/ViewEmailButton";
 import { Modal } from "$app/components/Modal";
 import { showAlert } from "$app/components/server-components/Alert";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 
 type DeleteEmailModalProps = {
   installment: { id: string; name: string } | null;
@@ -105,10 +104,12 @@ export const EmailSheetActions = ({ installment, onDelete }: EmailSheetActionsPr
     <div className="grid grid-flow-col gap-4">
       {installment.send_emails ? <ViewEmailButton installment={installment} /> : null}
       {installment.shown_on_profile ? (
-        <NavigationButton href={installment.full_url} target="_blank" rel="noopener noreferrer">
-          <FileDetail pack="filled" className="size-5" />
-          View post
-        </NavigationButton>
+        <Button asChild>
+          <a href={installment.full_url} target="_blank" rel="noopener noreferrer">
+            <FileDetail pack="filled" className="size-5" />
+            View post
+          </a>
+        </Button>
       ) : null}
     </div>
     <div className="grid grid-flow-col gap-4">

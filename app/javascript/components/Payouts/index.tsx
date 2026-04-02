@@ -19,7 +19,6 @@ import { Card, CardContent } from "$app/components/ui/Card";
 import { Fieldset, FieldsetTitle } from "$app/components/ui/Fieldset";
 import { InputGroup } from "$app/components/ui/InputGroup";
 import { Label } from "$app/components/ui/Label";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Pill } from "$app/components/ui/Pill";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
@@ -548,9 +547,9 @@ const PeriodEmpty = ({ minimumPayoutAmountCents }: { minimumPayoutAmountCents: n
         symbolFormat: "short",
       })}{" "}
       to be paid out for your sales.
-      <NavigationButton color="accent" href="/help/article/269-balance-page">
-        Learn about payouts
-      </NavigationButton>
+      <Button asChild color="accent">
+        <a href="/help/article/269-balance-page">Learn about payouts</a>
+      </Button>
     </Placeholder>
   </div>
 );
@@ -715,10 +714,12 @@ const Payouts = ({
   if (!loggedInUser) return null;
 
   const settingsAction = loggedInUser.policies.settings_payments_user.show ? (
-    <NavigationButton href={Routes.settings_payments_path()}>
-      <Cog pack="filled" className="size-5" />
-      Settings
-    </NavigationButton>
+    <Button asChild>
+      <a href={Routes.settings_payments_path()}>
+        <Cog pack="filled" className="size-5" />
+        Settings
+      </a>
+    </Button>
   ) : null;
 
   const bulkExportAction = loggedInUser.policies.balance.export ? <ExportPayoutsPopover /> : null;

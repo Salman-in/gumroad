@@ -93,7 +93,7 @@ import { Fieldset, FieldsetDescription, FieldsetTitle } from "$app/components/ui
 import { InlineList } from "$app/components/ui/InlineList";
 import { Input } from "$app/components/ui/Input";
 import { Label } from "$app/components/ui/Label";
-import { NavigationButton, NavigationButtonInertia } from "$app/components/ui/NavigationButton";
+import { NavigationButtonInertia } from "$app/components/ui/NavigationButton";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Pill } from "$app/components/ui/Pill";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
@@ -578,9 +578,9 @@ const CustomersPage = ({
                 Every time a new customer purchases a product from your Gumroad, their email address and other details
                 are added here.
                 <div>
-                  <NavigationButton color="accent" href={Routes.new_product_path()}>
-                    Start selling today
-                  </NavigationButton>
+                  <Button asChild color="accent">
+                    <a href={Routes.new_product_path()}>Start selling today</a>
+                  </Button>
                 </div>
                 <p>
                   or{" "}
@@ -1577,9 +1577,11 @@ const TrackingSection = ({
         {tracking.shipped ? (
           tracking.url ? (
             <CardContent>
-              <NavigationButton color="primary" href={tracking.url} target="_blank" className="grow">
-                Track shipment
-              </NavigationButton>
+              <Button asChild color="primary" className="grow">
+                <a href={tracking.url} target="_blank" rel="noreferrer">
+                  Track shipment
+                </a>
+              </Button>
             </CardContent>
           ) : (
             <CardContent>
@@ -2622,16 +2624,17 @@ const FileRow = ({ file, disabled, onDelete }: { file: File; disabled?: boolean;
           <Trash className="size-5" />
         </Button>
       ) : null}
-      <NavigationButton
-        size="icon"
-        href={Routes.s3_utility_cdn_url_for_blob_path({ key: file.key })}
-        download
-        target="_blank"
-        disabled={disabled}
-        aria-label="Download"
-      >
-        <ArrowDown pack="filled" className="size-5" />
-      </NavigationButton>
+      <Button asChild size="icon" disabled={disabled} aria-label="Download">
+        <a
+          href={Routes.s3_utility_cdn_url_for_blob_path({ key: file.key })}
+          download
+          target="_blank"
+          rel="noreferrer"
+          {...(disabled && { tabIndex: -1, className: "pointer-events-none" })}
+        >
+          <ArrowDown pack="filled" className="size-5" />
+        </a>
+      </Button>
     </RowActions>
   </Row>
 );
