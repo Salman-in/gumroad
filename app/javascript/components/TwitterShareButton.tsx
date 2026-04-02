@@ -1,7 +1,7 @@
 import { TwitterX } from "@boxicons/react";
 import * as React from "react";
 
-import { NavigationButton } from "$app/components/ui/NavigationButton";
+import { Button } from "$app/components/Button";
 
 // if true
 export const TwitterShareButton = ({ url, text = "Join me on @Gumroad!" }: { url: string; text?: string }) => {
@@ -18,9 +18,11 @@ export const TwitterShareButton = ({ url, text = "Join me on @Gumroad!" }: { url
   };
 
   return (
-    <NavigationButton color="twitter" onClick={handleClick} href={shareUrl} target="_blank" rel="noopener noreferrer">
-      <TwitterX pack="brands" className="size-5" />
-      Share on X
-    </NavigationButton>
+    <Button asChild color="twitter">
+      <a onClick={handleClick} href={shareUrl} target="_blank" rel="noopener noreferrer">
+        <TwitterX pack="brands" className="size-5" />
+        Share on X
+      </a>
+    </Button>
   );
 };

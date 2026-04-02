@@ -18,7 +18,6 @@ import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from "$app/com
 import { showAlert } from "$app/components/server-components/Alert";
 import { NodeActionsMenu, NodeActionsWrapper } from "$app/components/TiptapExtensions/NodeActionsMenu";
 import { Input } from "$app/components/ui/Input";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
 import { useRunOnce } from "$app/components/useRunOnce";
 
@@ -194,14 +193,16 @@ const FileEmbedGroupNodeView = ({
                             Zipping files...
                           </Button>
                         ) : isTuple(downloadableFiles, 1) ? (
-                          <NavigationButton
-                            href={downloadableFiles[0].url ?? undefined}
-                            download={downloadableFiles[0].display_name}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Download file
-                          </NavigationButton>
+                          <Button asChild>
+                            <a
+                              href={downloadableFiles[0].url ?? undefined}
+                              download={downloadableFiles[0].display_name}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Download file
+                            </a>
+                          </Button>
                         ) : (
                           <Button onClick={() => void download()}>Download as ZIP</Button>
                         )}

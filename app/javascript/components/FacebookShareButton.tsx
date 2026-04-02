@@ -1,7 +1,7 @@
 import { Facebook } from "@boxicons/react";
 import * as React from "react";
 
-import { NavigationButton } from "$app/components/ui/NavigationButton";
+import { Button } from "$app/components/Button";
 
 const isFbSdkInitialized = () => typeof FB !== "undefined";
 
@@ -17,9 +17,11 @@ export const FacebookShareButton = ({ url, text = "Join me on Gumroad!" }: { url
   };
 
   return (
-    <NavigationButton color="facebook" onClick={handleClick} href={shareUrl} target="_blank" rel="noopener noreferrer">
-      <Facebook pack="brands" className="size-5" />
-      Share on Facebook
-    </NavigationButton>
+    <Button asChild color="facebook">
+      <a onClick={handleClick} href={shareUrl} target="_blank" rel="noopener noreferrer">
+        <Facebook pack="brands" className="size-5" />
+        Share on Facebook
+      </a>
+    </Button>
   );
 };

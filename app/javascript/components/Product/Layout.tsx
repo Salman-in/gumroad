@@ -5,6 +5,7 @@ import { assertDefined } from "$app/utils/assert";
 import { classNames } from "$app/utils/classNames";
 import { assertResponseError, request, ResponseError } from "$app/utils/request";
 
+import { Button } from "$app/components/Button";
 import { useAppDomain } from "$app/components/DomainSettings";
 import {
   Product,
@@ -34,7 +35,6 @@ import {
 import { Section, SectionLayout, PageProps as SectionsProps } from "$app/components/Profile/Sections";
 import { ImageUploadSettingsContext } from "$app/components/RichTextEditor";
 import { showAlert } from "$app/components/server-components/Alert";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { useIsAboveBreakpoint } from "$app/components/useIsAboveBreakpoint";
 import { useRefToLatest } from "$app/components/useRefToLatest";
 import { WithTooltip } from "$app/components/WithTooltip";
@@ -349,14 +349,11 @@ const EditButton = ({ product }: { product: Product }) => {
       }}
     >
       <WithTooltip tip="Edit product" position={isDesktop ? "right" : "left"}>
-        <NavigationButton
-          color="filled"
-          size="icon"
-          href={Routes.edit_link_url({ id: product.permalink }, { host: appDomain })}
-          aria-label="Edit product"
-        >
-          <Pencil className="size-5" />
-        </NavigationButton>
+        <Button asChild color="filled" size="icon">
+          <a href={Routes.edit_link_url({ id: product.permalink }, { host: appDomain })} aria-label="Edit product">
+            <Pencil className="size-5" />
+          </a>
+        </Button>
       </WithTooltip>
     </div>
   );

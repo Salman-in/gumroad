@@ -18,7 +18,6 @@ import { Card, CardContent } from "$app/components/ui/Card";
 import { Fieldset, FieldsetDescription, FieldsetTitle } from "$app/components/ui/Fieldset";
 import { Input } from "$app/components/ui/Input";
 import { Label } from "$app/components/ui/Label";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 
 export const LineItem = ({
   name,
@@ -112,15 +111,11 @@ const SuccessfulLineItemResultEntry = ({ name, result }: { name: string; result:
             ) : null}
             {result.content_url ? (
               <CardContent>
-                <NavigationButton
-                  href={result.content_url}
-                  color="accent"
-                  target="_blank"
-                  onClick={trackViewContentClick}
-                  className="grow basis-0"
-                >
-                  {result.view_content_button_text}
-                </NavigationButton>
+                <Button asChild color="accent" className="grow basis-0">
+                  <a href={result.content_url} target="_blank" onClick={trackViewContentClick} rel="noreferrer">
+                    {result.view_content_button_text}
+                  </a>
+                </Button>
               </CardContent>
             ) : null}
             {result.is_gift_sender_purchase ? (

@@ -16,7 +16,6 @@ import { useProductEditContext } from "$app/components/ProductEdit/state";
 import { TwitterShareButton } from "$app/components/TwitterShareButton";
 import { Alert } from "$app/components/ui/Alert";
 import { Fieldset } from "$app/components/ui/Fieldset";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { Switch } from "$app/components/ui/Switch";
 import { useRunOnce } from "$app/components/useRunOnce";
 
@@ -50,15 +49,12 @@ export const ShareTab = () => {
                   Copy URL
                 </Button>
               </CopyToClipboard>
-              <NavigationButton
-                href={`https://gum.new?productId=${id}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                color="accent"
-              >
-                <Plus className="size-5" />
-                Create Gum
-              </NavigationButton>
+              <Button asChild color="accent">
+                <a href={`https://gum.new?productId=${id}`} target="_blank" rel="noopener noreferrer">
+                  <Plus className="size-5" />
+                  Create Gum
+                </a>
+              </Button>
             </div>
           </section>
           <ProfileSectionsEditor

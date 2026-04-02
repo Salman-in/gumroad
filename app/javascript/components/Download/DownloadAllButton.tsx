@@ -3,7 +3,6 @@ import * as React from "react";
 
 import { Button } from "$app/components/Button";
 import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from "$app/components/Popover";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 
 type Props = { zip_path: string; files: { url: string; filename: string | null }[] };
 
@@ -19,10 +18,12 @@ export const DownloadAllButton = ({ zip_path, files }: Props) => (
     </PopoverAnchor>
     <PopoverContent sideOffset={4}>
       <div className="grid gap-2">
-        <NavigationButton href={zip_path}>
-          <FileCode pack="filled" className="size-5" />
-          Download as ZIP
-        </NavigationButton>
+        <Button asChild>
+          <a href={zip_path}>
+            <FileCode pack="filled" className="size-5" />
+            Download as ZIP
+          </a>
+        </Button>
         <Button onClick={() => Dropbox.save({ files })}>
           <DropboxIcon pack="brands" className="size-5" />
           Save to Dropbox

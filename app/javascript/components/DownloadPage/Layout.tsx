@@ -20,7 +20,6 @@ import { Card, CardContent } from "$app/components/ui/Card";
 import { Details, DetailsToggle } from "$app/components/ui/Details";
 import { Fieldset, FieldsetDescription } from "$app/components/ui/Fieldset";
 import { Input } from "$app/components/ui/Input";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { useIsAboveBreakpoint } from "$app/components/useIsAboveBreakpoint";
 
 export type PurchaseCustomField = {
@@ -155,9 +154,9 @@ export const Layout = ({
                       {purchase.membership.is_installment_plan_completed ? (
                         "This installment plan has been paid in full."
                       ) : (
-                        <NavigationButton href={Routes.manage_subscription_url(purchase.membership.subscription_id)}>
-                          Manage
-                        </NavigationButton>
+                        <Button asChild>
+                          <a href={Routes.manage_subscription_url(purchase.membership.subscription_id)}>Manage</a>
+                        </Button>
                       )}
                     </Details>
                   </CardContent>
@@ -169,15 +168,15 @@ export const Layout = ({
                       </DetailsToggle>
                       <div style={{ display: "grid" }}>
                         {purchase.membership.has_active_subscription ? (
-                          <NavigationButton href={Routes.manage_subscription_url(purchase.membership.subscription_id)}>
-                            Manage
-                          </NavigationButton>
+                          <Button asChild>
+                            <a href={Routes.manage_subscription_url(purchase.membership.subscription_id)}>Manage</a>
+                          </Button>
                         ) : purchase.membership.is_subscription_ended ? (
                           "This subscription has ended."
                         ) : purchase.membership.is_subscription_cancelled_or_failed ? (
-                          <NavigationButton href={Routes.manage_subscription_url(purchase.membership.subscription_id)}>
-                            Restart
-                          </NavigationButton>
+                          <Button asChild>
+                            <a href={Routes.manage_subscription_url(purchase.membership.subscription_id)}>Restart</a>
+                          </Button>
                         ) : null}
                       </div>
                     </Details>
@@ -191,15 +190,17 @@ export const Layout = ({
                       Receipt
                     </DetailsToggle>
                     <div className="flex flex-col gap-4">
-                      <NavigationButton
-                        href={
-                          purchase.email
-                            ? Routes.receipt_purchase_url(receiptPurchaseId, { email: purchase.email })
-                            : Routes.receipt_purchase_url(receiptPurchaseId)
-                        }
-                      >
-                        View receipt
-                      </NavigationButton>
+                      <Button asChild>
+                        <a
+                          href={
+                            purchase.email
+                              ? Routes.receipt_purchase_url(receiptPurchaseId, { email: purchase.email })
+                              : Routes.receipt_purchase_url(receiptPurchaseId)
+                          }
+                        >
+                          View receipt
+                        </a>
+                      </Button>
                       <Button onClick={() => handleResendReceipt(receiptPurchaseId)} disabled={isResendingReceipt}>
                         {isResendingReceipt ? "Resending receipt..." : "Resend receipt"}
                       </Button>

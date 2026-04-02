@@ -18,7 +18,6 @@ import { SectionLayout } from "$app/components/Profile/Sections";
 import { ImageUploadSettingsContext } from "$app/components/RichTextEditor";
 import { showAlert } from "$app/components/server-components/Alert";
 import PlainTextStarterKit from "$app/components/TiptapExtensions/PlainTextStarterKit";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { Row, RowActions, RowContent, RowDragHandle, Rows } from "$app/components/ui/Rows";
 import { Tab, Tabs } from "$app/components/ui/Tabs";
 import { useIsAboveBreakpoint } from "$app/components/useIsAboveBreakpoint";
@@ -255,14 +254,11 @@ export const EditProfile = (props: Props) => {
       </header>
       <div className="fixed! top-5 right-3 z-30 p-0! lg:top-3 lg:right-auto lg:left-3">
         <WithTooltip tip="Edit profile" position={isDesktop ? "right" : "left"}>
-          <NavigationButton
-            color="filled"
-            size="icon"
-            href={Routes.settings_profile_url({ host: appDomain })}
-            aria-label="Edit profile"
-          >
-            <Pencil className="size-5" />
-          </NavigationButton>
+          <Button asChild color="filled" size="icon">
+            <a href={Routes.settings_profile_url({ host: appDomain })} aria-label="Edit profile">
+              <Pencil className="size-5" />
+            </a>
+          </Button>
         </WithTooltip>
       </div>
       {visibleSections.length ? (

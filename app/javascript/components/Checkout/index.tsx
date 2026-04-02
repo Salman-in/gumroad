@@ -39,7 +39,6 @@ import { showAlert } from "$app/components/server-components/Alert";
 import { Alert } from "$app/components/ui/Alert";
 import { Fieldset } from "$app/components/ui/Fieldset";
 import { Input } from "$app/components/ui/Input";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Pill } from "$app/components/ui/Pill";
 import { Placeholder, PlaceholderImage } from "$app/components/ui/Placeholder";
@@ -227,7 +226,11 @@ export const Checkout = ({
         className="border-none pb-0 md:px-16 md:pb-0 lg:mb-2"
         title="Checkout"
         actions={
-          isDesktop ? <NavigationButton href={cart.returnUrl ?? discoverUrl}>Continue shopping</NavigationButton> : null
+          isDesktop ? (
+            <Button asChild>
+              <a href={cart.returnUrl ?? discoverUrl}>Continue shopping</a>
+            </Button>
+          ) : null
         }
         showTitleOnMobile
       />
@@ -382,7 +385,11 @@ export const Checkout = ({
               ) : null}
             </div>
             <PaymentForm />
-            {!isDesktop && <NavigationButton href={cart.returnUrl ?? discoverUrl}>Continue shopping</NavigationButton>}
+            {!isDesktop && (
+              <Button asChild>
+                <a href={cart.returnUrl ?? discoverUrl}>Continue shopping</a>
+              </Button>
+            )}
           </div>
         </div>
       ) : (

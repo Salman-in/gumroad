@@ -6,13 +6,13 @@ import { formatInstallmentPaymentSchedule } from "$app/utils/price";
 import { assertResponseError } from "$app/utils/request";
 import { trackProductEvent } from "$app/utils/user_analytics";
 
+import { Button } from "$app/components/Button";
 import { getNotForSaleMessage, Product, ProductDiscount, Purchase } from "$app/components/Product";
 import {
   applySelection,
   hasMetDiscountConditions,
   PriceSelection,
 } from "$app/components/Product/ConfigurationSelector";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
 import { useRunOnce } from "$app/components/useRunOnce";
 
@@ -146,35 +146,28 @@ export const CtaButton = React.forwardRef<HTMLAnchorElement, Props>(
 
     return (
       <>
-        <NavigationButton
-          ref={ref}
-          href={url.toString()}
-          color="accent"
-          className={compactOnMobile}
-          {...buttonCommonProps}
-        >
-          {label ??
-            (purchase
-              ? "Purchase again"
-              : product.recurrences
-                ? "Subscribe"
-                : selection.rent
-                  ? "Rent"
-                  : product.custom_button_text_option
-                    ? getCtaName(product.custom_button_text_option)
-                    : "I want this!")}
-        </NavigationButton>
+        <Button asChild color="accent" className={compactOnMobile}>
+          <a ref={ref} href={url.toString()} {...buttonCommonProps}>
+            {label ??
+              (purchase
+                ? "Purchase again"
+                : product.recurrences
+                  ? "Subscribe"
+                  : selection.rent
+                    ? "Rent"
+                    : product.custom_button_text_option
+                      ? getCtaName(product.custom_button_text_option)
+                      : "I want this!")}
+          </a>
+        </Button>
 
         {product.installment_plan && product.installment_plan.number_of_installments > 1 ? (
           <>
-            <NavigationButton
-              color="black"
-              href={urlWithInstallments.toString()}
-              className={compactOnMobile}
-              {...buttonCommonProps}
-            >
-              Pay in {product.installment_plan.number_of_installments} installments
-            </NavigationButton>
+            <Button asChild color="black" className={compactOnMobile}>
+              <a href={urlWithInstallments.toString()} {...buttonCommonProps}>
+                Pay in {product.installment_plan.number_of_installments} installments
+              </a>
+            </Button>
             {showInstallmentPlanNotes ? (
               <small className="block text-center">
                 {formatInstallmentPaymentSchedule(

@@ -19,7 +19,6 @@ import { useImageUploadSettings } from "$app/components/RichTextEditor";
 import { showAlert } from "$app/components/server-components/Alert";
 import { SubtitleFile } from "$app/components/SubtitleList/Row";
 import { Alert } from "$app/components/ui/Alert";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { PageHeader } from "$app/components/ui/PageHeader";
 import { Tab, Tabs } from "$app/components/ui/Tabs";
 import { useRefToLatest } from "$app/components/useRefToLatest";
@@ -98,23 +97,24 @@ const NotifyAboutProductUpdatesAlert = () => {
             <Button color="primary" outline onClick={() => close()}>
               Skip for now
             </Button>
-            <NavigationButton
-              color="primary"
-              href={Routes.new_email_path({
-                template: "content_updates",
-                product: uniquePermalink,
-                bought: contentUpdates?.uniquePermalinkOrVariantIds ?? [],
-              })}
-              onClick={() => {
-                // NOTE: this is a workaround to make sure the alert closes after the tab is opened
-                // with correct URL params. Otherwise `bought` won't be set correctly.
-                setTimeout(() => close(), 100);
-              }}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Send notification
-            </NavigationButton>
+            <Button asChild color="primary">
+              <a
+                href={Routes.new_email_path({
+                  template: "content_updates",
+                  product: uniquePermalink,
+                  bought: contentUpdates?.uniquePermalinkOrVariantIds ?? [],
+                })}
+                onClick={() => {
+                  // NOTE: this is a workaround to make sure the alert closes after the tab is opened
+                  // with correct URL params. Otherwise `bought` won't be set correctly.
+                  setTimeout(() => close(), 100);
+                }}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Send notification
+              </a>
+            </Button>
           </div>
         </div>
       </Alert>
@@ -337,16 +337,16 @@ export const Layout = ({
           <PreviewSidebar
             {...(showNavigationButton && {
               previewLink: (props) => (
-                <NavigationButton
-                  {...props}
-                  size="icon"
-                  disabled={isBusy}
-                  href={url}
-                  onClick={(evt) => {
-                    evt.preventDefault();
-                    void save().then(() => window.open(url, "_blank"));
-                  }}
-                />
+                <Button asChild size="icon" disabled={isBusy}>
+                  <a
+                    {...props}
+                    href={url}
+                    onClick={(evt) => {
+                      evt.preventDefault();
+                      void save().then(() => window.open(url, "_blank"));
+                    }}
+                  />
+                </Button>
               ),
             })}
           >

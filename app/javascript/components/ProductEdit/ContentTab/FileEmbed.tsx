@@ -40,7 +40,6 @@ import { Fieldset, FieldsetTitle } from "$app/components/ui/Fieldset";
 import { Input } from "$app/components/ui/Input";
 import { Label } from "$app/components/ui/Label";
 import { Menu, MenuItem } from "$app/components/ui/Menu";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { Placeholder } from "$app/components/ui/Placeholder";
 import { Row, RowActions, RowContent, RowDetails } from "$app/components/ui/Rows";
 import { Switch } from "$app/components/ui/Switch";
@@ -515,12 +514,11 @@ const FileEmbedNodeView = ({ node, editor, getPos, updateAttributes }: NodeViewP
 
           <RowActions>
             {downloadUrl && !file.stream_only ? (
-              <NavigationButton
-                href={downloadUrl}
-                download={`${file.display_name}.${file.extension?.toLocaleLowerCase()}`}
-              >
-                Download
-              </NavigationButton>
+              <Button asChild>
+                <a href={downloadUrl} download={`${file.display_name}.${file.extension?.toLocaleLowerCase()}`}>
+                  Download
+                </a>
+              </Button>
             ) : null}
 
             {file.is_streamable ? (

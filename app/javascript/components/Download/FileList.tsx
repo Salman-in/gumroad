@@ -32,7 +32,6 @@ import { ProgressPie } from "$app/components/ProgressPie";
 import { showAlert } from "$app/components/server-components/Alert";
 import { Fieldset, FieldsetDescription } from "$app/components/ui/Fieldset";
 import { Input } from "$app/components/ui/Input";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
 import { useOnOutsideClick } from "$app/components/useOnOutsideClick";
 import { useReactNativeMessage } from "$app/components/useReactNativeMessage";
@@ -167,7 +166,9 @@ export const FileRow = ({
   const downloadUrl = file.download_url;
   const downloadButton = downloadUrl ? (
     <TrackClick eventName="download_click" file={file}>
-      <NavigationButton href={downloadUrl}>Download</NavigationButton>
+      <Button asChild>
+        <a href={downloadUrl}>Download</a>
+      </Button>
     </TrackClick>
   ) : null;
   const streamUrl = file.stream_url;
@@ -274,11 +275,13 @@ export const FileRow = ({
 
         {!isEmbed && streamUrl != null ? (
           <TrackClick eventName="stream_click" file={file}>
-            <NavigationButton color="primary" href={streamUrl} target="_blank">
-              {file.latest_media_location != null && file.latest_media_location.location === file.content_length
-                ? "Watch again"
-                : "Watch"}
-            </NavigationButton>
+            <Button asChild color="primary">
+              <a href={streamUrl} target="_blank" rel="noreferrer">
+                {file.latest_media_location != null && file.latest_media_location.location === file.content_length
+                  ? "Watch again"
+                  : "Watch"}
+              </a>
+            </Button>
           </TrackClick>
         ) : null}
 
@@ -290,9 +293,11 @@ export const FileRow = ({
 
         {externalLinkUrl !== null ? (
           <TrackClick eventName="external_link_click" file={file}>
-            <NavigationButton color="primary" href={externalLinkUrl} target="_blank">
-              Open
-            </NavigationButton>
+            <Button asChild color="primary">
+              <a href={externalLinkUrl} target="_blank" rel="noreferrer">
+                Open
+              </a>
+            </Button>
           </TrackClick>
         ) : null}
 
@@ -338,11 +343,13 @@ export const FileRow = ({
 
             {file.read_url != null ? (
               <NativeAppLink file={file}>
-                <NavigationButton color="primary" href={file.read_url}>
-                  {file.latest_media_location != null && file.latest_media_location.location === file.content_length
-                    ? "Read again"
-                    : "Read"}
-                </NavigationButton>
+                <Button asChild color="primary">
+                  <a href={file.read_url}>
+                    {file.latest_media_location != null && file.latest_media_location.location === file.content_length
+                      ? "Read again"
+                      : "Read"}
+                  </a>
+                </Button>
               </NativeAppLink>
             ) : null}
           </>
@@ -797,7 +804,9 @@ const SubtitleRow = ({ subtitleFile }: { subtitleFile: SubtitleFile }) => (
     </RowContent>
 
     <RowActions>
-      <NavigationButton href={subtitleFile.download_url}>Download</NavigationButton>
+      <Button asChild>
+        <a href={subtitleFile.download_url}>Download</a>
+      </Button>
     </RowActions>
   </Row>
 );

@@ -28,7 +28,6 @@ import { ExternalMediaFileEmbed } from "$app/components/TiptapExtensions/MediaEm
 import { MoreLikeThis } from "$app/components/TiptapExtensions/MoreLikeThis";
 import { Posts } from "$app/components/TiptapExtensions/Posts";
 import { ShortAnswer } from "$app/components/TiptapExtensions/ShortAnswer";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { Row, RowActions, RowContent, RowDetails, Rows } from "$app/components/ui/Rows";
 import { useRunOnce } from "$app/components/useRunOnce";
 
@@ -410,15 +409,16 @@ const FileGroupDownloadAllButton = ({ folderId, files }: { folderId: string; fil
               Zipping files...
             </Button>
           ) : files.length === 1 && firstDownloadableFile ? (
-            <NavigationButton
-              contentEditable={false}
-              href={firstDownloadableFile.url}
-              download={firstDownloadableFile.downloadFileName}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Download file
-            </NavigationButton>
+            <Button asChild contentEditable={false}>
+              <a
+                href={firstDownloadableFile.url}
+                download={firstDownloadableFile.downloadFileName}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Download file
+              </a>
+            </Button>
           ) : (
             <Button
               contentEditable={false}

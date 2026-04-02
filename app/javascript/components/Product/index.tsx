@@ -26,6 +26,7 @@ import { variantLabel } from "$app/utils/labels";
 import { assertResponseError } from "$app/utils/request";
 import { startTrackingForSeller, trackProductEvent } from "$app/utils/user_analytics";
 
+import { Button } from "$app/components/Button";
 import {
   CartItem,
   CartItemEnd,
@@ -70,7 +71,6 @@ import { ReviewCard } from "$app/components/TiptapExtensions/ReviewCard";
 import { UpsellCard } from "$app/components/TiptapExtensions/UpsellCard";
 import { Alert } from "$app/components/ui/Alert";
 import { Card, CardContent } from "$app/components/ui/Card";
-import { NavigationButton } from "$app/components/ui/NavigationButton";
 import { useAddThirdPartyAnalytics } from "$app/components/useAddThirdPartyAnalytics";
 import { useOnChange } from "$app/components/useOnChange";
 import { useOriginalLocation } from "$app/components/useOriginalLocation";
@@ -688,9 +688,11 @@ const ExistingPurchaseCard = ({
     }).catch(assertResponseError);
 
   const viewContentButton = purchase.show_view_content_button_on_product_page ? (
-    <NavigationButton color="primary" href={purchase.content_url ?? ""} target="_blank" onClick={handleViewClick}>
-      {customViewContentButtonText ?? "View content"}
-    </NavigationButton>
+    <Button asChild color="primary">
+      <a href={purchase.content_url ?? ""} target="_blank" onClick={handleViewClick} rel="noreferrer">
+        {customViewContentButtonText ?? "View content"}
+      </a>
+    </Button>
   ) : null;
 
   const allowRating = differenceInYears(new Date(), parseISO(purchase.created_at)) < 1;
@@ -707,19 +709,21 @@ const ExistingPurchaseCard = ({
               {purchase.total_price_including_tax_and_shipping}
             </CardContent>
             <CardContent>
-              <NavigationButton
-                href={purchase.membership.manage_url}
-                target="_blank"
-                onClick={() =>
-                  void trackUserProductAction({
-                    name: "product_information_manage_membership",
-                    permalink,
-                  }).catch(assertResponseError)
-                }
-                className="grow basis-0"
-              >
-                {purchase.subscription_has_lapsed ? "Restart membership" : "Manage membership"}
-              </NavigationButton>
+              <Button asChild className="grow basis-0">
+                <a
+                  href={purchase.membership.manage_url}
+                  target="_blank"
+                  onClick={() =>
+                    void trackUserProductAction({
+                      name: "product_information_manage_membership",
+                      permalink,
+                    }).catch(assertResponseError)
+                  }
+                  rel="noreferrer"
+                >
+                  {purchase.subscription_has_lapsed ? "Restart membership" : "Manage membership"}
+                </a>
+              </Button>
               {viewContentButton}
             </CardContent>
           </>
